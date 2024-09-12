@@ -27,7 +27,16 @@ jobs:
       run: npm install -g firebase-tools
 
     - name: Build Angular app
-      run: npm run build:prod
+      run: |
+        if [[ "$GITHUB_REF" == "refs/heads/develop" ]]; then
+          npm run build:dev
+        elif [[ "$GITHUB_REF" == "refs/heads/homolog" ]]; then
+          npm run build:hmr
+        elif [[ "$GITHUB_REF" == "refs/heads/main" ]]; then
+          npm run build:prod
+        else
+          echo "No matching branch found, skipping build."
+        fi
 
     - name: Show GITHUB_REF
       run: echo "GITHUB_REF is $GITHUB_REF"
