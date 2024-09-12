@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # Checkout :'(
+    # Checkout :(
     - name: Checkout code
       uses: actions/checkout@v2
 
@@ -35,13 +35,13 @@ jobs:
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SOLICITOU_DESENVOLVIMENTO }}
       run: |
-        if [[ ${{ github.ref }} == 'refs/heads/develop' ]]; then
-          firebase use solicitou-desenvolvimento --token ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SOLICITOU_DESENVOLVIMENTO }}
-          firebase deploy --only hosting:solicitou-web-desenvolvimento --token ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SOLICITOU_DESENVOLVIMENTO }}
-        elif [[ ${{ github.ref }} == 'refs/heads/homolog' ]]; then
-          firebase use solicitou-homologacao --token ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SOLICITOU_DESENVOLVIMENTO }}
-          firebase deploy --only hosting:solicitou-web-homologacao --token ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SOLICITOU_DESENVOLVIMENTO }}
-        elif [[ ${{ github.ref }} == 'refs/heads/main' ]]; then
-          firebase use solicitou-producao --token ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SOLICITOU_DESENVOLVIMENTO }}
-          firebase deploy --only hosting:solicitou-web-producao --token ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SOLICITOU_DESENVOLVIMENTO }}
+        if [[ "$GITHUB_REF" == "refs/heads/develop" ]]; then
+          firebase use solicitou-desenvolvimento --token $FIREBASE_TOKEN
+          firebase deploy --only hosting:solicitou-web-desenvolvimento --token $FIREBASE_TOKEN
+        elif [[ "$GITHUB_REF" == "refs/heads/homolog" ]]; then
+          firebase use solicitou-homologacao --token $FIREBASE_TOKEN
+          firebase deploy --only hosting:solicitou-web-homologacao --token $FIREBASE_TOKEN
+        elif [[ "$GITHUB_REF" == "refs/heads/main" ]]; then
+          firebase use solicitou-producao --token $FIREBASE_TOKEN
+          firebase deploy --only hosting:solicitou-web-producao --token $FIREBASE_TOKEN
         fi
