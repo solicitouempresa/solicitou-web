@@ -1,0 +1,135 @@
+.order-card {
+    position: relative;
+    margin: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 100%; // Garante que o cartão não ultrapasse a largura da tela
+  
+    .mat-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      background-color: #f5f5f5;
+      border-bottom: 1px solid #ddd;
+  
+      .close-button {
+        position: absolute;
+        right: 16px;
+        top: 16px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+  
+        mat-icon {
+          font-size: 24px;
+          color: #333;
+        }
+      }
+  
+      mat-card-title {
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+    }
+  
+    .order-details {
+      padding: 16px;
+      max-height: 400px;
+      overflow-y: auto;
+  
+      .order-summary {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-bottom: 16px;
+  
+        .order-info {
+          flex: 1;
+          min-width: 200px;
+          display: flex;
+          justify-content: space-between;
+          padding: 8px 0;
+  
+          span {
+            display: block;
+          }
+  
+          b {
+            font-weight: bold;
+          }
+        }
+      }
+  
+      .product-list {
+        .product {
+          margin-bottom: 16px;
+          padding: 16px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+  
+          .product-title {
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            font-weight: bold;
+          }
+  
+          p {
+            margin: 4px 0;
+          }
+  
+          .item-list {
+            border-top: 1px dashed #ddd;
+            padding-top: 8px;
+            margin-top: 8px;
+  
+            h4 {
+              font-size: 1em;
+              margin-bottom: 8px;
+            }
+  
+            .item {
+              padding-bottom: 8px;
+  
+              p {
+                margin: 4px 0;
+              }
+            }
+          }
+        }
+      }
+  
+      .order-summary {
+        border-top: 1px solid #ddd;
+        padding-top: 16px;
+      }
+    }
+  
+    @media (max-width: 768px) {
+      width: 90%; // Aumenta a largura do cartão em dispositivos móveis
+      margin: 16px auto; // Centraliza o cartão horizontalmente
+  
+      .mat-card-header {
+        padding: 8px;
+      }
+  
+      .order-details {
+        .order-summary {
+          flex-direction: column;
+        }
+  
+        .product-list {
+          .product {
+            padding: 16px;
+            margin: 8px 0; // Ajusta o espaço entre os produtos
+          }
+        }
+      }
+    }
+  
+    @media (max-width: 480px) {
+      width: 95%; // Maior largura para dispositivos móveis menores
+    }
+  }
+  

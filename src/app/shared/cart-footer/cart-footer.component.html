@@ -1,0 +1,5 @@
+<div class="footer-bar" *ngIf="productItem.length > 0">
+    <p class="label-price"> Total: {{ someAmount() | currency }}</p>
+    <button (click)="goToCart()">Ir ao Carrinho</button>
+  </div>
+  

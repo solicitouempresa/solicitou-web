@@ -1,0 +1,99 @@
+.displayTable {
+    display: table;
+    width: 100%;
+    height: 100vh;
+    background-color: #f9f9f9; /* Cor de fundo leve */
+    padding: 0 20px;
+    text-align: center;
+  }
+  
+  .displayTableCell {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+  
+  .authBlock {
+    display: inline-block;
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .authBlock h3 {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: #333333;
+    text-align: center;
+  }
+  
+  .formGroup {
+    margin-bottom: 20px;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .btnPrimary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #ffffff;
+    background-color: #ff6f61; /* Cor do botão */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    width: 100%;
+  }
+  
+  .btnPrimary i {
+    margin-right: 8px;
+  }
+  
+  .btnPrimary:hover {
+    background-color: #d8474b;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .redirectToLogin {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.9em;
+  }
+  
+  .redirect {
+    color: #ff6f61;
+    cursor: pointer;
+  }
+  
+  .redirect:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsividade para mobile */
+  @media (max-width: 600px) {
+    .authBlock {
+      padding: 20px 20px;
+    }
+  
+    .authBlock h3 {
+      font-size: 1.3em;
+    }
+  
+    .btnPrimary {
+      font-size: 0.9em;
+    }
+  
+    .redirectToLogin {
+      font-size: 0.8em;
+    }
+  }
+  

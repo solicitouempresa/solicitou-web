@@ -1,0 +1,74 @@
+<header id="header" class="header fixed-top d-flex align-items-center">
+  <div class="container d-flex align-items-center justify-content-between">
+     <a (click)="goToHome()" class="logo d-flex align-items-center me-auto me-lg-0">
+      <!-- <img src="../../../assets/logo/logo.png" alt="logo"> -->
+        <h1 style="font-size: 18px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"><span>Soli</span>citou<span>.</span></h1>
+     </a>
+     <nav id="navbar" class="navbar">
+        <ul>
+           <!-- <li><a href="#hero">Inicio</a></li>
+           <li><a href="#about">Sobre</a></li>
+           <li><a href="#menu">Menu</a></li>
+           <li><a href="#events">Restaurantes</a></li> -->
+           <!-- <li><a href="#chefs">Promo��es</a></li> -->
+           <!-- <li><a href="#gallery">Gallery</a></li> -->
+           <!-- <li class="dropdown">
+              <a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+              <ul>
+                 <li><a href="#">Drop Down 1</a></li>
+                 <li class="dropdown">
+                    <a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                    <ul>
+                       <li><a href="#">Deep Drop Down 1</a></li>
+                       <li><a href="#">Deep Drop Down 2</a></li>
+                       <li><a href="#">Deep Drop Down 3</a></li>
+                       <li><a href="#">Deep Drop Down 4</a></li>
+                       <li><a href="#">Deep Drop Down 5</a></li>
+                    </ul>
+                 </li>
+                 <li><a href="#">Drop Down 2</a></li>
+                 <li><a href="#">Drop Down 3</a></li>
+                 <li><a href="#">Drop Down 4</a></li>
+              </ul>
+           </li> -->
+           <!-- <li><a href="#contact">Contato</a></li> -->
+        </ul>
+     </nav>
+     <div>
+      <a class="btn-book-a-table" (click)="goToShoppinCart()">
+         <mat-icon>shopping_cart</mat-icon>
+       </a>
+     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="goToOrders()">
+        <mat-icon>local_mall</mat-icon>
+        <span>Meus Pedidos</span>
+      </button>
+      <button *ngIf="userJson !== null && userJson.emailVerified === true" mat-menu-item (click)="goToUser()">
+         <mat-icon>person</mat-icon>
+         <span *ngIf="userJson !== null">{{nameUser || '-'}}</span>
+      </button>
+      <button *ngIf="userJson === null || userJson?.emailVerified === false" mat-menu-item (click)="goToLogin()">
+         <mat-icon>person</mat-icon>
+         <span>Entrar</span>
+      </button>
+
+      <!-- <button mat-menu-item>
+        <mat-icon>notifications_off</mat-icon>
+        <span>Disable alerts</span>
+      </button> -->
+    </mat-menu>
+     <!-- <a class="btn-book-a-table"(click)="goToShoppinCart()">  <mat-icon>shopping_cart</mat-icon></a> -->
+    </div>
+     <!-- <i class="mobile-nav-toggle mobile-nav-show bi bi-list">
+     </i>
+
+
+     <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x">
+      <a class="btn-book-a-table"(click)="goToOrders()">Meus Pedidos</a>
+      <a class="btn-book-a-table"(click)="goToShoppinCart()">  <mat-icon>shopping_cart</mat-icon></a>
+     </i> -->
+    </div>
+</header>

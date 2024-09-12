@@ -1,0 +1,21 @@
+<app-header></app-header>
+<div class="container">
+  <div class="content">
+    <h3>Login:</h3>
+    <div class="formGroup">
+      <input type="text" class="formControl" placeholder="E-mail" #userName required>
+    </div>
+    <div class="formGroup">
+      <input type="password" class="formControl" placeholder="Senha" #userPassword required>
+    </div>
+    <div class="formGroup">
+      <input type="button" class="btn btnPrimary" value="Entrar" (click)="authService.SignIn(userName.value, userPassword.value)">
+    </div>
+    <div class="forgotPassword">
+      <span routerLink="/forgot-password">Esqueci minha senha?</span>
+    </div>
+    <div class="redirectToLogin">
+      <span>Ainda não tem conta?<span class="redirect" routerLink="/register-user"> Cadastrar-se</span></span>
+    </div>
+  </div>
+</div>

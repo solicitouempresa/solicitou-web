@@ -1,0 +1,175 @@
+<app-header></app-header>
+<main id="main">
+
+
+
+<section id="menu" class="menu" *ngIf="!verifyOrders">
+
+  <div class="section-header">
+    <button mat-button mat-raised-button class="btn-back" (click)="back()">
+      <mat-icon>arrow_back</mat-icon> Voltar
+    </button>
+  </div>
+
+
+  <div class="container" data-aos="fade-up">
+    <div class="section-header">
+      <br />
+      <h2>Pedidos Realizados</h2>
+      <p>Você não tem pedidos no momento</p>
+    </div>
+  </div>
+
+  <mat-card>
+    <mat-card-header>
+      <h4>Você não tem pedidos realizados</h4>
+    </mat-card-header>
+  </mat-card>
+
+
+</section>
+<div class="spinner-container" *ngIf="!verifyOrders">
+  <mat-spinner></mat-spinner>
+</div>
+
+<section id="menu" class="menu" *ngIf="verifyOrders">
+  <div class="section-header-button">
+    <button mat-button mat-raised-button class="btn-back-button" (click)="back()">
+      <mat-icon>arrow_back</mat-icon> Voltar
+    </button>
+  </div>
+  <div class="section-header">
+    <br />
+    <h2>Pedidos Realizados</h2>
+    <p>Seus Pedidos Realizados:</p>
+  </div>
+
+  <!-- <mat-card *ngFor="let item of productItem">
+    <mat-card-header>
+      <img src="{{ item.product.urlImage }}" alt="" class="image-product"/>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Nome do Produto: {{ item.product.name }}</p>
+      <p>Quantidade: {{ item.quantity }}</p>
+      <p>Valor do Produto: {{ item.product.price | currency }}</p>
+    </mat-card-content>
+  </mat-card>
+  <button mat-raised-button color="warn" >Concluir Pedido</button> -->
+
+  <div *ngIf="orderData">
+    <div class="clickable-card" (click)="toSpecification(orderData)" class="mat-card">
+      <mat-card>
+        <mat-card-content>
+          <div class="card-item">
+            <b>Nome estabelecimento: </b>
+            <span>{{ orderData.establishment?.name }}</span>
+          </div>
+        </mat-card-content>
+        <mat-card-header>
+          <div class="card-item">
+            <b>Data do pedido: </b>
+            <span>{{ orderData.dateCreated | date: 'dd/MM/yyyy HH:mm' }}</span>
+          </div>
+          <div class="card-item">
+            <b>Valor Total: </b>
+            <span>{{ orderData.amount | currency: 'BRL' }}</span>
+          </div>
+        </mat-card-header>          
+      <mat-card-footer>
+        <div class="status-container">
+          <div class="status-item" [ngClass]="{ 'active': orderData.statusOrder == 'SOLICITADO' || isStatusAfter('SOLICITADO', orderData.statusOrder) }">
+            <mat-icon>watch_later</mat-icon>
+            <span>Solicitado</span>
+          </div>
+          <div class="status-item" [ngClass]="{ 'active': orderData.statusOrder == 'PEDIDO CONFIRMADO' || isStatusAfter('PEDIDO CONFIRMADO', orderData.statusOrder) }">
+            <mat-icon>check_circle</mat-icon>
+            <span>Pedido Confirmado</span>
+          </div>
+          <div class="status-item" [ngClass]="{ 'active': orderData.statusOrder == 'PREPARANDO PEDIDO' || isStatusAfter('PREPARANDO PEDIDO', orderData.statusOrder) }">
+            <mat-icon>restaurant</mat-icon>
+            <span>Preparando Pedido</span>
+          </div>
+          <div class="status-item" [ngClass]="{ 'active': orderData.statusOrder == 'ENTREGANDO' || isStatusAfter('ENTREGANDO', orderData.statusOrder) }">
+            <mat-icon>local_shipping</mat-icon>
+            <span>Entregando</span>
+          </div>
+          <div class="status-item" [ngClass]="{ 'active': orderData.statusOrder == 'ENTREGUE' }">
+            <mat-icon>done_all</mat-icon>
+            <span>Entregue</span>
+          </div>
+        </div>
+      </mat-card-footer>
+    </mat-card>
+
+  </div>
+  </div>
+  
+  <div *ngIf="orderDataByUser">
+    <div *ngFor="let order of orderDataByUser">
+      <div class="clickable-card" (click)="toSpecification(order)" class="mat-card">
+          <mat-card>
+            <mat-card-content>
+              <div class="card-item">
+                <b>Nome estabelecimento: </b>
+                <span>{{ order.establishment?.name }}</span>
+              </div>
+            </mat-card-content>
+            <mat-card-header>
+              <div class="card-item">
+                <b>Data do pedido: </b>
+                <span>{{ order.dateCreated | date: 'dd/MM/yyyy HH:mm' }}</span>
+              </div>
+              <div class="card-item">
+                <b>Valor Total: </b>
+                <span>{{ order.amount | currency: 'BRL' }}</span>
+              </div>
+            </mat-card-header>          
+          <mat-card-footer>
+            <div class="status-container">
+              <div class="status-item" [ngClass]="{ 'active': order.statusOrder == 'SOLICITADO' || isStatusAfter('SOLICITADO', order.statusOrder) }">
+                <mat-icon>watch_later</mat-icon>
+                <span>Solicitado</span>
+              </div>
+              <div class="status-item" [ngClass]="{ 'active': order.statusOrder == 'PEDIDO CONFIRMADO' || isStatusAfter('PEDIDO CONFIRMADO', order.statusOrder) }">
+                <mat-icon>check_circle</mat-icon>
+                <span>Pedido Confirmado</span>
+              </div>
+              <div class="status-item" [ngClass]="{ 'active': order.statusOrder == 'PREPARANDO PEDIDO' || isStatusAfter('PREPARANDO PEDIDO', order.statusOrder) }">
+                <mat-icon>restaurant</mat-icon>
+                <span>Preparando Pedido</span>
+              </div>
+              <div class="status-item" [ngClass]="{ 'active': order.statusOrder == 'ENTREGANDO' || isStatusAfter('ENTREGANDO', order.statusOrder) }">
+                <mat-icon>local_shipping</mat-icon>
+                <span>Entregando</span>
+              </div>
+              <div class="status-item" [ngClass]="{ 'active': order.statusOrder == 'ENTREGUE' }">
+                <mat-icon>done_all</mat-icon>
+                <span>Entregue</span>
+              </div>
+            </div>
+            <div class="rating-container" *ngIf="order.statusOrder == 'ENTREGUE' && order.review?.rating == 0">
+              <div class="stars" (click)="$event.stopPropagation()">
+                <mat-icon *ngFor="let star of stars; let i = index" (click)="selectRating(i + 1)">
+                  {{ i < rating ? 'star' : 'star_border' }}
+                </mat-icon>
+              </div>
+              <textarea placeholder="Observação" [(ngModel)]="observation" (click)="$event.stopPropagation()"></textarea>
+              <button *ngIf="rating >= 1" (click)="submitReview(order); $event.stopPropagation()">Enviar Avaliação</button>
+            </div>       
+            <div class="rating-container" *ngIf="order.statusOrder == 'ENTREGUE' && order.review.rating > 0">
+              <span>Pedido já avaliado! =D</span>
+            </div>   
+          </mat-card-footer>
+        </mat-card>
+      </div>
+    </div>
+    <br>
+<br>
+<br>
+<br>
+  </div>
+
+</section>
+</main>
+
+<app-footer></app-footer>

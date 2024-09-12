@@ -1,0 +1,59 @@
+<app-header></app-header>
+<div class="displayTable">
+  <div class="displayTableCell">
+    <div class="authBlock">
+      <h3>Cadastrar:</h3>
+      <div class="formGroup">
+        <form [formGroup]="formCadastro" (ngSubmit)="SignUp()">
+          <mat-form-field appearance="outline" class="inputField">
+            <input
+              matInput
+              type="email"
+              class="formControl"
+              formControlName="email"
+              placeholder="E-mail"
+              #userEmail
+              required
+            />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="inputField">
+            <input
+              matInput
+              type="password"
+              class="formControl"
+              formControlName="password"
+              placeholder="Senha"
+              #userPwd
+              required
+            />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="inputField">
+            <input
+              matInput
+              type="password"
+              class="formControl"
+              formControlName="confirmPassword"
+              placeholder="Confirme a Senha"
+              required
+            />
+          </mat-form-field>
+          <div *ngIf="formCadastro.errors?.['passwordsMismatch']" class="error-message">
+            As senhas não são iguais.
+          </div>
+          <div *ngIf="formCadastro.controls['password'].errors?.['invalidPassword']" class="error-message">
+            A senha deve ter pelo menos 8 caracteres e ao menos um caractere especial.
+          </div>
+          <div class="buttonContainer">
+            <button class="btn btnPrimary" type="submit" [disabled]="!formCadastro.valid">Cadastrar</button>
+          </div>
+        </form>
+        <div class="spinnerContainer" *ngIf="loading">
+          <mat-spinner></mat-spinner>
+        </div>
+      </div>
+      <div class="redirectToLogin">
+        <span>Você já tem conta? <span class="redirect" routerLink="/login">Entrar</span></span>
+      </div>
+    </div>
+  </div>
+</div>

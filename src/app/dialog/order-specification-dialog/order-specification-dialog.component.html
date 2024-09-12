@@ -1,0 +1,68 @@
+<mat-card class="order-card">
+  <mat-card-header>
+    <button mat-icon-button class="close-button" (click)="onClose()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-card-title>Detalhes do Pedido</mat-card-title>
+  </mat-card-header>
+  
+  <mat-card-content class="order-details">
+    <div class="order-summary">
+      <div class="order-info">
+        <span><b>Nome estabelecimento:</b></span>
+        <span>{{ orderData.establishment?.name }}</span>
+      </div>
+      <div class="order-info">
+        <span><b>Data do pedido:</b></span>
+        <span>{{ orderData.dateCreated | date: 'dd/MM/yyyy HH:mm' }}</span>
+      </div>
+      <div class="order-info">
+        <span><b>Valor Total:</b></span>
+        <span>{{ orderData.amount | currency: 'BRL' }}</span>
+      </div>
+    </div>
+
+    <div class="product-list">
+      <mat-card-content *ngFor="let item of orderData.productItem">
+        <div class="product">
+          <h3 class="product-title">Produto:</h3>
+          <p><b>Nome:</b> {{ item.product.name }}</p>
+          <p><b>Valor Produto:</b> {{ item.product.price | currency: 'BRL' }}</p>
+          <p><b>Quantidade:</b> {{ item.quantity }}</p>
+
+          <div class="item-list">
+            <h4>Itens do Produto:</h4>
+            <div *ngFor="let itemProduct of item.product.itensProduct" class="item">
+              <p><b>Nome:</b> {{ itemProduct.name }}</p>
+              <p><b>Valor Produto:</b> {{ itemProduct.priceOption | currency: 'BRL' }}</p>
+              <p><b>Quantidade:</b> {{ itemProduct.quantity }}</p>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </div>
+
+    <mat-card-content class="order-summary">
+      <div class="order-info">
+        <span><b>Valor Frete:</b></span>
+        <span>{{ orderData.rateDelivery | currency: 'BRL' }}</span>
+      </div>
+      <div class="order-info">
+        <span><b>Valor Declarado para pagamento:</b></span>
+        <span>{{ orderData.valueCash | currency: 'BRL' }}</span>
+      </div>
+      <div class="order-info">
+        <span><b>Valor do Troco:</b></span>
+        <span>{{ orderData.changeMoney | currency: 'BRL' }}</span>
+      </div>
+      <div class="order-info">
+        <span><b>Forma de Pagamento:</b></span>
+        <span>{{ orderData.typePayment }}</span>
+      </div>
+      <div class="order-info">
+        <span><b>Endereço de Entrega:</b></span>
+        <span>{{ orderData.addressDelivery?.address }}</span>
+      </div>
+    </mat-card-content>
+  </mat-card-content>
+</mat-card>

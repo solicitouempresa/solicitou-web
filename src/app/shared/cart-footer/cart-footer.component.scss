@@ -1,0 +1,61 @@
+.footer-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8); /* Cor de fundo com leve transparência */
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  transition: transform 0.5s ease-in-out;
+}
+
+.label-price {
+  font-family: 'Poppins', sans-serif; /* Fonte moderna e arredondada */
+  font-size: 15px; /* Tamanho da fonte */
+  font-weight: bold; /* Negrito para destaque */
+  color: #fff; /* Cor do texto em branco */
+  background: linear-gradient(90deg, #55ce71, #55a869); /* Gradiente verde */
+  padding: 5px 5px; /* Espaçamento interno */
+  border-radius: 10px; /* Bordas arredondadas */
+  display: inline-block; /* Ajusta a largura ao conteúdo */
+}
+
+.footer-bar p {
+  margin: 0;
+  font-size: 1em;
+}
+
+.footer-bar button {
+  background-color: #d8474b; /* Cor de fundo do botão */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.footer-bar button:hover {
+  background-color: #b73837; /* Cor de fundo do botão ao passar o mouse */
+}
+
+.footer-bar.hidden {
+  transform: translateY(100%);
+}
+
+@media (max-width: 600px) {
+  .footer-bar {
+    padding: 10px;
+    font-size: 0.9em;
+  }
+
+  .footer-bar button {
+    padding: 8px 16px;
+    font-size: 0.9em;
+  }
+}
