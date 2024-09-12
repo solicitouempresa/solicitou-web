@@ -28,20 +28,20 @@ jobs:
 
     # Build Angular :O
     - name: Build Angular app
-      run: npm run build -- --prod
+      run: npm run build:prod
 
     # Deploy to Firebase Hosting :D
     - name: Deploy to Firebase Hosting
       env:
-        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SOLICITOU_DESENVOLVIMENTO }}
       run: |
         if [[ ${{ github.ref }} == 'refs/heads/develop' ]]; then
-          firebase use solicitou-desenvolvimento --token ${{ secrets.FIREBASE_TOKEN }}
-          firebase deploy --only hosting:solicitou-web-desenvolvimento --token ${{ secrets.FIREBASE_TOKEN }}
+          firebase use solicitou-desenvolvimento --token ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SOLICITOU_DESENVOLVIMENTO }}
+          firebase deploy --only hosting:solicitou-web-desenvolvimento --token ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SOLICITOU_DESENVOLVIMENTO }}
         elif [[ ${{ github.ref }} == 'refs/heads/homolog' ]]; then
-          firebase use solicitou-homologacao --token ${{ secrets.FIREBASE_TOKEN }}
-          firebase deploy --only hosting:solicitou-web-homologacao --token ${{ secrets.FIREBASE_TOKEN }}
+          firebase use solicitou-homologacao --token ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SOLICITOU_DESENVOLVIMENTO }}
+          firebase deploy --only hosting:solicitou-web-homologacao --token ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SOLICITOU_DESENVOLVIMENTO }}
         elif [[ ${{ github.ref }} == 'refs/heads/main' ]]; then
-          firebase use solicitou-producao --token ${{ secrets.FIREBASE_TOKEN }}
-          firebase deploy --only hosting:solicitou-web-producao --token ${{ secrets.FIREBASE_TOKEN }}
+          firebase use solicitou-producao --token ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SOLICITOU_DESENVOLVIMENTO }}
+          firebase deploy --only hosting:solicitou-web-producao --token ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SOLICITOU_DESENVOLVIMENTO }}
         fi
