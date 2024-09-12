@@ -1,7 +1,6 @@
 {
   "hosting": {
-    "site": "solicitou-web-desenvolvimento",
-    "target":"solicitou-web-desenvolvimento",
+    "target": "solicitou-web-desenvolvimento",
     "public": "dist/solicitou-web",
     "ignore": [
       "firebase.json",
@@ -16,4 +15,3 @@
     ]
   }
 }
-
