@@ -42,23 +42,23 @@ jobs:
       run: echo "GITHUB_REF is $GITHUB_REF"
 
     - name: Deploy to Firebase Hosting
-      env:
-        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-      run: |
-        set -e
-        echo "Starting Firebase deploy script..."
-        if [[ "$GITHUB_REF" == "refs/heads/develop" ]]; then
-          echo "Deploying to Desenvolvimento environment..."
-          firebase use solicitou-desenvolvimento --token $FIREBASE_TOKEN
-          firebase deploy --only hosting:solicitou-web-desenvolvimento --token $FIREBASE_TOKEN
-        elif [[ "$GITHUB_REF" == "refs/heads/homolog" ]]; then
-          echo "Deploying to Homologacao environment..."
-          firebase use solicitou-homologacao --token $FIREBASE_TOKEN
-          firebase deploy --only hosting:solicitou-web-homologacao --token $FIREBASE_TOKEN
-        elif [[ "$GITHUB_REF" == "refs/heads/main" ]]; then
-          echo "Deploying to Producao environment..."
-          firebase use solicitou-producao --token $FIREBASE_TOKEN
-          firebase deploy --only hosting:solicitou-web-producao --token $FIREBASE_TOKEN
-        else
-          echo "No matching branch found, skipping deploy."
-        fi
+    env:
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+    run: |
+      set -e
+      echo "Starting Firebase deploy script..."
+      if [[ "$GITHUB_REF" == "refs/heads/develop" ]]; then
+        echo "Deploying to Desenvolvimento environment..."
+        firebase use solicitou-desenvolvimento
+        firebase deploy --only hosting:solicitou-web-desenvolvimento
+      elif [[ "$GITHUB_REF" == "refs/heads/homolog" ]]; then
+        echo "Deploying to Homologacao environment..."
+        firebase use solicitou-homologacao
+        firebase deploy --only hosting:solicitou-web-homologacao
+      elif [[ "$GITHUB_REF" == "refs/heads/main" ]]; then
+        echo "Deploying to Producao environment..."
+        firebase use solicitou-producao
+        firebase deploy --only hosting:solicitou-web-producao
+      else
+        echo "No matching branch found, skipping deploy."
+      fi

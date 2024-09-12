@@ -1,12 +1,28 @@
 {
   "projects": {
-    "default": "solicitou-desenvolvimento"
+    "default": "solicitou-desenvolvimento",
+    "solicitou-homologacao": "solicitou-homologacao",
+    "solicitou-producao": "solicitou-producao"
   },
   "targets": {
     "solicitou-desenvolvimento": {
       "hosting": {
         "solicitou-web-desenvolvimento": [
           "solicitou-desenvolvimento"
+        ]
+      }
+    },
+    "solicitou-homologacao": {
+      "hosting": {
+        "solicitou-web-homologacao": [
+          "solicitou-homologacao"
+        ]
+      }
+    },
+    "solicitou-producao": {
+      "hosting": {
+        "solicitou-web-producao": [
+          "solicitou-producao"
         ]
       }
     }
