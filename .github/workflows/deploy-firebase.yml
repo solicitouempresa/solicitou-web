@@ -12,25 +12,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # Checkout the code
+    # Checkout :'(
     - name: Checkout code
       uses: actions/checkout@v2
 
-    # Setup Node.js
+    # Setup Node :(
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '20.12.0'
 
-    # Install dependencies
+    # Install dependencies :/
     - name: Install dependencies
-      run: npm install
+      run: npm install legacy-peer-deps
 
-    # Build the Angular project
+    # Build Angular :O
     - name: Build Angular app
       run: npm run build -- --prod
 
-    # Deploy to Firebase Hosting based on the branch
+    # Deploy to Firebase Hosting :D
     - name: Deploy to Firebase Hosting
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
