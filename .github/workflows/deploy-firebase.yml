@@ -34,14 +34,14 @@ jobs:
     - name: Build Angular app
       run: npm run build:prod
 
-    # Debugging: Show GitHub ref
+    # Debugging
     - name: Show GITHUB_REF
       run: echo "GITHUB_REF is $GITHUB_REF"
 
     # Deploy to Firebase Hosting :D
     - name: Deploy to Firebase Hosting
       env:
-        FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SOLICITOU_DESENVOLVIMENTO }}
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
       run: |
         set -e # Fail on first error to stop pipeline
         echo "Starting Firebase deploy script..."

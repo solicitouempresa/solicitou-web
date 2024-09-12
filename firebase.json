@@ -2,14 +2,18 @@
   "hosting": {
     "site": "solicitou-web-desenvolvimento",
     "target":"solicitou-web-desenvolvimento",
-    "source": ".",
+    "public": "dist/solicitou-web",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
-    "frameworksBackend": {
-      "region": "us-east1"
-    }
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
   }
 }
+
