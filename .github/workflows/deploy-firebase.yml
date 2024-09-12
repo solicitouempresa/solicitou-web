@@ -12,38 +12,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # Checkout :(
     - name: Checkout code
       uses: actions/checkout@v2
 
-    # Setup Node :(
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '20.12.0'
 
-    # Install dependencies :/
     - name: Install dependencies
       run: npm install --legacy-peer-deps
 
-    # Install Firebase CLI :D
     - name: Install Firebase CLI
       run: npm install -g firebase-tools
 
-    # Build Angular :O
     - name: Build Angular app
       run: npm run build:prod
 
-    # Debugging
     - name: Show GITHUB_REF
       run: echo "GITHUB_REF is $GITHUB_REF"
 
-    # Deploy to Firebase Hosting :D
     - name: Deploy to Firebase Hosting
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
       run: |
-        set -e # Fail on first error to stop pipeline
+        set -e
         echo "Starting Firebase deploy script..."
         if [[ "$GITHUB_REF" == "refs/heads/develop" ]]; then
           echo "Deploying to Desenvolvimento environment..."

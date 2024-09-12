@@ -1,5 +1,16 @@
 {
   "projects": {
     "default": "solicitou-desenvolvimento"
-  }
+  },
+  "targets": {
+    "solicitou-desenvolvimento": {
+      "hosting": {
+        "solicitou-web-desenvolvimento": [
+          "solicitou-desenvolvimento"
+        ]
+      }
+    }
+  },
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }
