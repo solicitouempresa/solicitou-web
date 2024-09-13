@@ -1,0 +1,7 @@
+/.angular/cache
+node_modules
+dist
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json
