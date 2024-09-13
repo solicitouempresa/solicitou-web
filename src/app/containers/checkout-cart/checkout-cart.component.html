@@ -1,0 +1,240 @@
+<mat-card class="order-card">
+  <mat-spinner *ngIf="loading"></mat-spinner>
+
+  <form *ngIf="!loading" [formGroup]="formOrder" (ngSubmit)="submit()" class="form">
+    <p class="section-title">Dados pessoais:</p>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nome</mat-label>
+      <input matInput type="text" placeholder="Nome" formControlName="name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>E-mail</mat-label>
+      <input matInput type="email" placeholder="E-mail" formControlName="email" />
+    </mat-form-field>
+
+    <p class="section-title">Contato:</p>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="field-number">
+        <mat-label>DDD</mat-label>
+        <input matInput type="number" placeholder="92" formControlName="ddd" min="0" maxlength="2" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Celular</mat-label>
+        <input matInput type="number" placeholder="Celular (whatsapp)" formControlName="contact" min="0" />
+      </mat-form-field>
+    </div>
+
+    <p class="section-title">Endereço para entrega:</p>
+    <mat-form-field appearance="outline">
+      <mat-label>Rua</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="Rua"
+        formControlName="street"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Bairro</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="Bairro"
+        formControlName="neighborhood"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="field-number">
+      <mat-label>Número da Residência</mat-label>
+      <input matInput type="number" placeholder="Número" formControlName="number" min="0" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Complemento</mat-label>
+      <input matInput type="text" placeholder="Complemento" formControlName="complement" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Referência</mat-label>
+      <input matInput type="text" placeholder="Referência" formControlName="reference" />
+    </mat-form-field>
+
+    <p class="section-title">Forma de Pagamento:</p>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Forma de Pagamento</mat-label>
+      <mat-select formControlName="typePayment" (selectionChange)="changePayment($event)">
+        <mat-option *ngFor="let item of typePayment" [value]="item.description">{{ item.description }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Troco para:</mat-label>
+      <input matInput type="number" placeholder="Quanto irá pagar na hora?" formControlName="changeMoney" min="0" />
+    </mat-form-field>
+
+    <button mat-button mat-raised-button color="warn" type="submit" class="button-concluir-pedido" [disabled]="!formOrder.valid">
+      Concluir Pedido
+    </button>
+  </form>
+</mat-card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<mat-card>
+    <mat-spinner *ngIf="loading"></mat-spinner>
+
+    <form *ngIf="!loading" [formGroup]="formOrder" (ngSubmit)="submit()" class="form">
+      <p><b>Dados pessoais:</b></p>
+      <mat-form-field appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Nome"
+          formControlName="name"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>E-mail</mat-label>
+        <input
+          matInput
+          type="email"
+          placeholder="E-mail"
+          formControlName="email"
+        />
+      </mat-form-field>
+      <p><b>Contato:</b></p>
+      <mat-form-field appearance="outline" class="field-number">
+        <mat-label>DDD</mat-label>
+        <input
+          matInput
+          type="number"
+          placeholder="92"
+          formControlName="ddd"
+          min="0"
+          maxlength="2"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Celular</mat-label>
+        <input
+          matInput
+          type="number"
+          placeholder="Celular (whatsapp)"
+          formControlName="contact"
+          min="0"
+        />
+      </mat-form-field>
+
+      <p><b>Endereço para entrega:</b></p>
+      <mat-form-field appearance="outline">
+        <mat-label>Rua</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Rua"
+          formControlName="street"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="field-number">
+        <mat-label>Número da Residência</mat-label>
+        <input
+          matInput
+          type="number"
+          placeholder="Número"
+          formControlName="number"
+          min="0"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Complemento</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Complemento"
+          formControlName="complement"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Referência</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Referência"
+          formControlName="reference"
+        />
+      </mat-form-field>
+      <p><b>Forma de Pagamento:</b></p>
+  <mat-form-field appearance="outline">
+    <mat-label>Forma de Pagamento</mat-label>
+    <mat-select formControlName="typePayment" (selectionChange)="changePayment($event)">
+      <mat-option *ngFor="let item of typePayment" [value]="item.description" >
+        {{ item.description }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="field-number">
+    <mat-label>Troco para:</mat-label>
+    <input
+      matInput
+      type="number"
+      placeholder="Quanto irá pagar na hora ?"
+      formControlName="changeMoney"
+      min="0"
+    />
+  </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Bairro</mat-label>
+        <mat-select formControlName="neighborhood" [(ngModel)]="deliveryFee" (selectionChange)="onChange()">
+          <mat-option
+            *ngFor="let item of neighborhoods"
+            [value]="item.deliveryFee"
+            class="select"
+          >
+            {{ item.name  }} - {{ item.deliveryFee | currency}}
+          </mat-option>
+          <mat-hint>Esse estabelecimento só entrega nesses bairros</mat-hint>
+        </mat-select>
+      </mat-form-field>
+    
+      <button
+        mat-button
+        mat-raised-button
+        color="warn"
+        type="submit"
+        class="button-concluir-pedido"
+        [disabled]="!formOrder.valid"
+      >
+        Concluir Pedido
+      </button>
+    </form>
+  </mat-card>
+
+ -->

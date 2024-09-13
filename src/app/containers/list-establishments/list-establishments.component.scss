@@ -1,0 +1,281 @@
+img {
+  background-color: #ddd;
+  border-radius: 50%;
+  height: 200px;
+  object-fit: cover;
+  width: 200px;
+}
+
+.establishment-card {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0px;  // Reduzido o espaçamento entre os estabelecimentos
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  text-decoration: none;
+  width: calc(48% - 20px); /* Ajuste de largura para duas colunas com espaçamento */
+  margin-left: 20px;
+
+  &:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+  }
+
+  .card-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+  }
+
+  .establishment-image {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #ddd;
+    margin-right: 15px;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: filter 0.3s ease;
+    }
+
+    &.open {
+      border: 2px solid green;
+    }
+
+    &.closed {
+      border: 2px solid red;
+
+      img {
+        filter: grayscale(100%);
+      }
+    }
+  }
+
+  .establishment-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 20px;
+    border-left: 1px solid #ddd;  // Linha vertical visível
+
+    h4 {
+      font-size: 18px;
+      font-weight: 500;
+      margin: 0 0 5px 0;
+      color: #333;
+    }
+
+    .rating {
+      display: flex;
+      margin-bottom: 5px;
+
+      span {
+        font-size: 20px;
+        color: #d3d3d3;
+        margin-right: 5px;
+
+        &.filled {
+          color: #ffdd00;
+        }
+      }
+    }
+
+    .delivery-info {
+      font-size: 14px;
+      color: #666;
+
+      .free-delivery {
+        color: green;
+        margin-left: 10px;
+      }
+      .not-free-delivery {
+        color: green;
+        margin-left: 10px;
+        .shipping-icon {
+          padding-top: 4px;
+          margin-right: 5px;
+        }
+      }
+    }
+    
+  }
+}
+
+@media (max-width: 768px) {
+  .establishment-card {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 90%; /* Ajuste de largura para dispositivos móveis */
+    margin: 10px auto; 
+
+    .establishment-image {
+      width: 100px;  // Mantém o tamanho da imagem igual ao desktop
+      height: 100px;
+      margin-right: 20px;  // Espaçamento igual ao desktop
+      margin-bottom: 0;
+    }
+
+    .establishment-info {
+      padding-left: 20px;
+      border-left: 1px solid #ddd;  // Linha vertical visível
+
+      .rating {
+        span {
+          font-size: 20px;  // Mantém o tamanho da fonte igual ao desktop
+        }
+        .free-delivery {
+          background-color: #e9361f; /* Laranja escuro */
+          color: white;             /* Texto branco */
+          padding: 5px 10px;        /* Adiciona um pouco de preenchimento ao redor do texto */
+          font-size: 0.8em;         /* Define o tamanho da fonte como pequeno */
+          border-radius: 5px;       /* Adiciona bordas arredondadas */
+          display: inline-block;    /* Garante que o elemento tenha apenas o espaço necessário para o conteúdo */
+          margin-left: 5px;
+        }
+      }
+
+      h4 {
+        font-size: 18px;  // Mantém o tamanho da fonte igual ao desktop
+      }
+    }
+  }
+}
+
+
+// .menu-item {
+//   align-items: center;
+//   justify-self: center;
+//   padding-top: 10px;
+//   border: 0.1px solid #ff0000;
+//   background-color: #fff; /* Cor de fundo branca */
+//   border-radius: 10px; /* Bordas arredondadas */
+//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+//   padding: 15px; /* Espaçamento interno */
+//   margin-bottom: 20px; /* Espaçamento inferior entre os itens */
+//   transition: transform 0.2s, box-shadow 0.2s; 
+//   margin-left: 10px; /* Transições suaves */
+//   width: 30%;
+//   text-align: center;
+// }
+
+// .menu-item:hover {
+//   transform: translateY(-5px); /* Elevação ao passar o mouse */
+//   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra mais forte ao passar o mouse */
+// }
+
+// .rating {
+//   display: flex;
+//   justify-content: center; /* Centraliza as estrelas horizontalmente */
+//   align-items: center; /* Centraliza as estrelas verticalmente */
+//   margin-bottom: 10px;
+// }
+
+// .rating span {
+//   font-size: 24px; /* Tamanho das estrelas */
+//   color: #d3d3d3; /* Cor das estrelas apagadas */
+//   margin-right: 5px;
+// }
+
+// .rating span.filled {
+//   color: #ffdd00; /* Cor das estrelas preenchidas */
+// }
+
+// @media (max-width: 768px) {
+//   .menu-item {
+//     margin-top: 20px;
+//     margin: 10px auto; /* Centraliza os itens no mobile */
+//     width: calc(100% - 90px); /* Ajusta a largura no mobile */
+//   }
+
+//   .rating span {
+//     font-size: 20px; /* Tamanho menor das estrelas no mobile */
+//   }
+// }
+
+button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 50%;
+}
+
+button:hover {
+  background-color: #cc0000;
+}
+
+.search-container {
+  position: relative;
+  margin-bottom: 20px;
+  display: flex; /* Alinha o campo de busca e o botão horizontalmente */
+  align-items: center; /* Alinha verticalmente ao centro */
+}
+
+.search-input {
+  width: calc(100% - 60px); /* Ajusta o espaço para o botão de limpar */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.clear-search-button {
+  padding: 5px 10px; /* Diminuído o padding para tornar o botão menor */
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 14px; /* Fonte menor para o botão */
+  margin-left: 10px; /* Espaço entre o campo de busca e o botão */
+  width: 70px; /* Largura específica para o botão menor */
+}
+
+.clear-search-button:hover {
+  background-color: #cc0000;
+}
+
+.suggestions-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.suggestions-list li {
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.suggestions-list li:hover {
+  background: #f0f0f0;
+}

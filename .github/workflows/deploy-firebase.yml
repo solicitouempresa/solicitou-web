@@ -1,0 +1,64 @@
+name: Firebase Deploy - Solicitou Web
+
+on:
+  push:
+    branches:
+      - develop
+      - homolog
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20.12.0'
+
+    - name: Install dependencies
+      run: npm install --legacy-peer-deps
+
+    - name: Install Firebase CLI
+      run: npm install -g firebase-tools
+
+    - name: Build Angular app
+      run: |
+        if [[ "$GITHUB_REF" == "refs/heads/develop" ]]; then
+          npm run build:dev
+        elif [[ "$GITHUB_REF" == "refs/heads/homolog" ]]; then
+          npm run build:hmr
+        elif [[ "$GITHUB_REF" == "refs/heads/main" ]]; then
+          npm run build:prod
+        else
+          echo "No matching branch found, skipping build."
+        fi
+
+    - name: Show GITHUB_REF
+      run: echo "GITHUB_REF is $GITHUB_REF"
+
+    - name: Deploy to Firebase Hosting
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      run: |
+        set -e
+        echo "Starting Firebase deploy script..."
+        if [[ "$GITHUB_REF" == "refs/heads/develop" ]]; then
+          echo "Deploying to Desenvolvimento environment..."
+          firebase use solicitou-desenvolvimento --token $FIREBASE_TOKEN
+          firebase deploy --only hosting:solicitou-web-desenvolvimento --token $FIREBASE_TOKEN
+        elif [[ "$GITHUB_REF" == "refs/heads/homolog" ]]; then
+          echo "Deploying to Homologacao environment..."
+          firebase use solicitou-homologacao --token $FIREBASE_TOKEN
+          firebase deploy --only hosting:solicitou-web-homologacao --token $FIREBASE_TOKEN
+        elif [[ "$GITHUB_REF" == "refs/heads/main" ]]; then
+          echo "Deploying to Producao environment..."
+          firebase use solicitou-producao --token $FIREBASE_TOKEN
+          firebase deploy --only hosting:solicitou-web-producao --token $FIREBASE_TOKEN
+        else
+          echo "No matching branch found, skipping deploy."
+        fi

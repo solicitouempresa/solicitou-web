@@ -1,0 +1,268 @@
+img {
+  background-color: #ddd;
+  border-radius: 50%;
+  height: 150px;
+  object-fit: cover;
+  width: 150px;
+  display: block;
+  margin: 0 auto;
+}
+
+.button-selecionar {
+  background-color: red;
+  color: white;
+}
+
+::ng-deep .mat-tab-label-container { 
+  overflow-x: scroll !important;
+}
+
+.price {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 24px;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.establishment-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.establishment-card {
+  flex: 0 1 calc(100% - 10px); 
+  margin: 3px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center; 
+  position: relative; 
+}
+
+.establishment-card img {
+  max-width: 100%;
+  border-radius: 50%; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+  margin: 10px auto; 
+}
+
+.establishment-info {
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+  max-width: 250px;
+  margin: 20px auto;
+  text-align: center;
+  &:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+  }
+}
+
+.establishment-details {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+
+  .detail-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+
+    mat-icon {
+      font-size: 22px;
+    }
+  }
+}
+
+.add-button {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #d8474b;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  /* Responsividade para mobile */
+  @media (max-width: 768px) {
+    align-self: flex-end;
+    align-items: end;
+  }
+}
+
+.establishment-name {
+  font-family: 'Poppins', sans-serif;
+  font-size: 3em;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.establishment-name::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 4px;
+  background: linear-gradient(90deg, #ff6f61, #d8474b);
+  border-radius: 2px;
+}
+
+.info-item {
+  margin-bottom: 15px;
+}
+
+.info-label {
+  font-weight: bold;
+  color: #666;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.info-value {
+  font-size: 1.2em;
+  color: #333;
+}
+
+.info-value a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.info-value a:hover {
+  text-decoration: underline;
+}
+
+.establishment-card h1 {
+  font-size: 1.5em;
+  margin: 10px 0;
+}
+
+.establishment-card p {
+  margin: 5px 0;
+}
+
+.establishment-card a {
+  color: blue;
+  text-decoration: none;
+}
+
+.establishment-card a:hover {
+  text-decoration: underline;
+}
+
+.status-label {
+  font-weight: bold;
+  border-radius: 15px;
+  margin-bottom: 50px;
+  width: 120px;
+  text-align: center;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.open {
+  background-color: lightgreen;
+  color: white;
+}
+
+.closed {
+  background-color: lightcoral;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .establishment-card {
+    flex: 0 1 calc(100% - 10px);
+  }
+}
+
+.item-card {
+  background: #f9f9f9;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  position: relative;
+}
+
+.item-card {
+  display: flex;
+  align-items: flex-start; /* Alinha itens no início do container flexível */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  background: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left; /* Alinha o texto à esquerda no container flexível */
+  cursor: pointer; /* Adiciona o cursor de ponteiro ao passar o mouse */
+}
+
+.item-image {
+  border-radius: 10px; /* Borda arredondada para a imagem */
+  border: 2px solid #ffdddd; /* Borda fina vermelho claro */
+  width: 100px; /* Largura fixa para a imagem */
+  height: 100px; /* Altura fixa para a imagem */
+  object-fit: cover; /* Ajusta a imagem para cobrir a área */
+  margin-right: 15px; /* Espaçamento entre a imagem e os detalhes */
+}
+
+.item-details {
+  position: relative;
+  padding-right: 50px; 
+}
+
+.label-name {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.label-description {
+  font-size: 15px;
+  color: #646363;
+  margin-bottom: 10px;
+}
+
+.label-price {
+  font-family: 'Poppins', sans-serif; /* Fonte moderna e arredondada */
+  font-size: 15px; /* Tamanho da fonte */
+  font-weight: bold; /* Negrito para destaque */
+  color: #fff; /* Cor do texto em branco */
+  background: linear-gradient(90deg, #55ce71, #55a869); /* Gradiente verde */
+  padding: 5px 5px; /* Espaçamento interno */
+  border-radius: 10px; /* Bordas arredondadas */
+  display: inline-block; /* Ajusta a largura ao conteúdo */
+  text-align: center; /* Centraliza o texto */
+  margin-right: 10px;
+  margin-bottom: 1rem
+}
+
+  .price{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 24px;
+  }
+
