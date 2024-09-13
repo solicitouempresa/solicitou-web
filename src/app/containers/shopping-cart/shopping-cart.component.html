@@ -1,0 +1,126 @@
+<app-header></app-header>
+<main id="main">
+
+
+  <section id="menu" class="menu" *ngIf="!verifyExistProduct">
+
+    <button mat-button mat-raised-button class="btn-back" (click)="back()">
+      <mat-icon>arrow_back</mat-icon> Voltar
+    </button>
+    <br>
+    <div class="container cart-container" data-aos="fade-up">
+      <div class="section-header">
+        <h2>Carrinho de Compras</h2>
+        <br>
+        <!-- <p>Você não possui produtos selecionados no momento.</p> -->
+        <mat-icon class="empty-cart-icon">shopping_cart</mat-icon>
+      </div>
+    
+      <mat-card class="empty-cart-card">
+        <mat-card-header>
+          <h4>Você não possui itens no carrinho.</h4>
+        </mat-card-header>
+      </mat-card>
+    </div>
+    
+    
+
+  </section>
+
+  <section id="menu" class="menu" *ngIf="verifyExistProduct">
+
+    <button mat-button mat-raised-button class="btn-back" (click)="back()">
+      <mat-icon>arrow_back</mat-icon> Voltar
+    </button>
+    <div class="section-header">
+      <br />
+      <h2>Carrinho de Compras</h2>
+      <p>Seus produtos selecionados:</p>
+    </div>
+
+    <div class="cart-container" data-aos="fade-up">
+      <div *ngFor="let item of productItem" class="cart-item-card">
+        <mat-card class="product-card">
+          <div class="product-content">
+            <div class="product-details">
+              <mat-card-subtitle *ngIf="establishmentDelivery"><b>Nome do Estabelecimento: </b>{{ establishmentDelivery.name }}</mat-card-subtitle>
+              <mat-card-subtitle><b>Nome do Produto: </b>{{ item.product.name }}</mat-card-subtitle>
+              <mat-card-subtitle><b>Quantidade: </b>{{ item.quantity }}</mat-card-subtitle>
+              <mat-card-subtitle><b>Valor do Produto: </b>{{ item.product.price | currency }}</mat-card-subtitle>
+              <div *ngIf="item.product.itensProduct.length > 0" class="product-itens">
+                <span>Itens do Produto:</span>
+                <mat-card *ngFor="let productItens of item.product.itensProduct" class="product-item-card">
+                  <mat-card-content>
+                    <p>Nome do Item: {{ productItens.name }}</p>
+                    <p>Quantidade do Item: {{ productItens.quantity }}</p>
+                    <p>Valor do Item: {{ productItens.priceOption | currency }}</p>
+                  </mat-card-content>
+                  <mat-card-actions>
+                    <button mat-mini-fab color="warn" (click)="deleteProductItem(productItens, item.product)">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </mat-card-actions>
+                </mat-card>
+              </div>
+            </div>
+            <mat-card-actions class="delete-button-container">
+              <button mat-mini-fab color="warn" (click)="deleteProductCart(item)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-card-actions>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+    
+
+    <!-- <button mat-raised-button color="warn" >Concluir Pedido</button> -->
+
+    <mat-card class="total-value-card">
+      <mat-card-content>
+        <div class="autocomplete-container">
+        <mat-google-maps-autocomplete
+        placeholderText="Insira e Selecione seu endereço"
+        addressLabelText="Escolha seu endereço para calcular entrega"
+                                appearance="outline"
+                                country="br"
+                                type="address"
+                                (onAutocompleteSelected)="onAutocompleteSelected($event)"
+                                (onLocationSelected)="onLocationSelected($event)"
+                                onblur="validAddress()"
+                                requiredErrorText="Endereço não encontrado"
+                                (onChange)="changeAddress()"
+                                >
+        </mat-google-maps-autocomplete>
+        <mat-icon *ngIf="address" class="clear-icon" (click)="clearAddress()">clear</mat-icon>
+      </div>
+       <div class="valores">
+        <span><b>Valor Produto: {{ valueTotalWithoutFee | currency }}</b></span>
+        <span><b>Valor Entrega: {{ deliveryFee | currency }}</b></span>
+        <span><b>Valor Total: <p class="label-price">{{ valueAmount | currency }}</p></b></span>
+       </div>
+    
+      </mat-card-content>
+
+
+      <mat-card-actions style="padding: 10px;">
+        <button
+        mat-button
+        mat-raised-button
+        color="warn"
+        class="button-concluir-pedido"
+        [disabled]="!addressValid"
+        (click)="checkout()"
+      >
+        Gerar Pedido
+      </button>
+      </mat-card-actions>
+    </mat-card>
+
+  
+
+  
+  </section>
+</main>
+
+<app-footer></app-footer>

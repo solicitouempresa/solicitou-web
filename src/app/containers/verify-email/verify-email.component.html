@@ -1,0 +1,22 @@
+<app-header></app-header>
+<div class="displayTable">
+  <div class="displayTableCell">
+    <div class="authBlock">
+      <h3>Obrigado por se cadastrar no Solicitou!</h3>
+      <div class="formGroup" *ngIf="authService.userData as user">
+        <p class="text-center">Enviamos um e-mail de confirmação para: <strong>{{user.email}}</strong>.</p>
+        <p class="text-center">Por favor, confira o seu e-mail e clique no link de validação.</p>
+      </div>
+      
+      <div class="formGroup">
+        <button type="button" class="btn btnPrimary" (click)="authService.SendVerificationMail()">
+          <i class="fas fa-redo-alt"></i>
+          Reenviar e-mail
+        </button>
+      </div>
+      <div class="redirectToLogin">
+        <span>Voltar? <span class="redirect" routerLink="/sign-in">Entrar</span></span>
+      </div>
+    </div>
+  </div>
+</div>
