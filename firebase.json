@@ -31,7 +31,7 @@
       ]
     },
     {
-      "target": "solicitou-web-producao",
+      "target": "solicitou-web",
       "public": "dist/solicitou-web",
       "ignore": [
         "firebase.json",
